@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useSupabaseConfig } from '../hooks/useSupabaseConfig'
 import HeroSection from '../components/sections/HeroSection'
 import GreetingSection from '../components/sections/GreetingSection'
@@ -15,15 +15,24 @@ import MusicToggle from '../components/ui/MusicToggle'
 export default function InvitePage() {
   const { config } = useSupabaseConfig()
   const [opened, setOpened] = useState(false)
+  const contentRef = useRef(null)
 
-  const musicUrl = config?.music?.enabled ? config?.music?.url : ''
+  // Always use local music file as fallback — Supabase config can override with a different URL
+  const musicUrl = (config?.music?.enabled && config?.music?.url) || '/Music.mp3'
+
+  function handleOpen() {
+    setOpened(true)
+    setTimeout(() => {
+      contentRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, 50)
+  }
 
   return (
     <div className="min-h-screen">
-      <HeroSection config={config} onOpen={() => setOpened(true)} />
+      <HeroSection config={config} onOpen={handleOpen} />
 
       {opened && (
-        <>
+        <div ref={contentRef}>
           <GreetingSection />
           <CoupleSection config={config} />
           <EventSection config={config} />
@@ -33,10 +42,10 @@ export default function InvitePage() {
           <GiftSection />
           <ShareSection />
           <ClosingSection config={config} />
-        </>
+        </div>
       )}
 
-      <MusicToggle musicUrl={musicUrl} />
+      <MusicToggle musicUrl={musicUrl} autoPlay={opened} />
     </div>
   )
 }

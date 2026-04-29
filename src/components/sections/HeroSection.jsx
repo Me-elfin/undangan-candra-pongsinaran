@@ -1,15 +1,51 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+
+const MOBILE_IMAGES = [
+  '/hero-916-1.jpg',
+  '/hero-916-2.jpg',
+  '/hero-916-3.jpg',
+]
+
+const DESKTOP_IMAGES = [
+  '/hero-169-1.jpg',
+  '/hero-169-2.jpg',
+  '/hero-169-3.jpg',
+]
+
+const SLIDE_INTERVAL = 3500 // 3.5 seconds
 
 export default function HeroSection({ config, onOpen }) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
-  const heroImage = config?.heroImageUrl || 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80'
-  const groomName = config?.couple?.groom?.nickname || 'Candra'
-  const brideName = config?.couple?.bride?.nickname || 'Pongsinaran'
-  const eventDate = config?.event?.resepsi?.date || '2026-12-12'
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  const groomName = config?.couple?.groom?.nickname || 'Chandra'
+  const brideName = config?.couple?.bride?.nickname || 'Listarina'
+  const eventDate = config?.event?.resepsi?.date || '2026-05-01'
+
+  // Detect mobile vs desktop
+  useEffect(() => {
+    function checkMobile() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Slideshow timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % 3)
+    }, SLIDE_INTERVAL)
+    return () => clearInterval(timer)
+  }, [])
+
+  const images = isMobile ? MOBILE_IMAGES : DESKTOP_IMAGES
 
   const formattedDate = new Date(eventDate + 'T00:00:00').toLocaleDateString('id-ID', {
     day: 'numeric',
@@ -19,12 +55,23 @@ export default function HeroSection({ config, onOpen }) {
 
   return (
     <section ref={ref} className="relative h-screen min-h-[600px] overflow-hidden flex items-center justify-center">
-      {/* Parallax Background */}
+      {/* Parallax Slideshow Background */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 will-change-transform">
-        <div
-          className="w-full h-[120%] bg-center bg-cover"
-          style={{ backgroundImage: `url('${heroImage}')` }}
-        />
+        <AnimatePresence mode="sync">
+          {images.map((src, index) => (
+            index === currentIndex && (
+              <motion.div
+                key={src}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1, ease: 'easeInOut' }}
+                className="absolute inset-0 w-full h-[120%] bg-center bg-cover"
+                style={{ backgroundImage: `url('${src}')` }}
+              />
+            )
+          ))}
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/75" />
       </motion.div>
 

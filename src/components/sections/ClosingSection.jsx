@@ -1,6 +1,16 @@
 import AnimatedSection from '../ui/AnimatedSection'
 import GoldDivider from '../ui/GoldDivider'
 
+function InstagramIcon({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  )
+}
+
 export default function ClosingSection({ config }) {
   const quote = config?.closing_quote || {}
   const groom = config?.couple?.groom?.nickname || 'Candra'
@@ -41,9 +51,17 @@ export default function ClosingSection({ config }) {
             {formattedDate}
           </p>
 
-          <p className="font-body text-xs text-white/15 mt-16 tracking-wide">
-            Dibuat dengan ♡ menggunakan teknologi digital
-          </p>
+          <div className="flex items-center justify-center gap-2 mt-16">
+            <a
+              href="https://www.instagram.com/lekomese/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 font-body text-xs text-white/20 hover:text-gold/50 transition-colors duration-300 tracking-wide"
+            >
+              <InstagramIcon size={14} />
+              <span>Dibuat oleh @lekomese_studio</span>
+            </a>
+          </div>
         </AnimatedSection>
       </div>
     </footer>

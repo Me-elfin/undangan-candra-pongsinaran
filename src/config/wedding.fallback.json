@@ -1,44 +1,44 @@
 {
   "couple": {
     "groom": {
-      "fullName": "Candra Placeholder",
-      "nickname": "Candra",
-      "fatherName": "Bapak Ayah Pengantin Pria",
-      "motherName": "Ibu Ibu Pengantin Pria",
+      "fullName": "Chandra W. D. T. Pongsinaran, ST",
+      "nickname": "Chandra",
+      "fatherName": "Bapak Tony Pongsinaran",
+      "motherName": "Ibu Lily Ondang",
       "photoUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
     },
     "bride": {
-      "fullName": "Pongsinaran Placeholder",
-      "nickname": "Pongsina",
-      "fatherName": "Bapak Ayah Pengantin Wanita",
-      "motherName": "Ibu Ibu Pengantin Wanita",
+      "fullName": "Listarina Mbura, S.Pd",
+      "nickname": "Listarina",
+      "fatherName": "Bapak Paulus Mbura",
+      "motherName": "Ibu Sarline Sine",
       "photoUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
     }
   },
   "event": {
     "akad": {
-      "date": "2026-12-12",
-      "time": "08:00",
-      "venue": "Gereja Placeholder",
-      "address": "Jl. Alamat Gereja No. 1, Kota",
-      "mapsUrl": "https://maps.google.com"
+      "date": "2026-05-01",
+      "time": "16:00",
+      "venue": "Gereja GMIT Zaitun Tuapukan",
+      "address": "Jln. Timor Raya Km. 24, Tuapukan",
+      "mapsUrl": "https://maps.app.goo.gl/QnqbwNsxPzG9R7D7A"
     },
     "resepsi": {
-      "date": "2026-12-12",
-      "time": "11:00",
-      "venue": "Gedung Resepsi Placeholder",
-      "address": "Jl. Alamat Gedung No. 2, Kota",
-      "mapsUrl": "https://maps.google.com"
+      "date": "2026-05-01",
+      "time": "18:00",
+      "venue": "Kediaman Bapak Paulus Mbura",
+      "address": "Jln. Timor Raya Km. 24, Tuapukan",
+      "mapsUrl": "https://maps.app.goo.gl/QnqbwNsxPzG9R7D7A"
     }
   },
   "heroImageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80",
   "closing_quote": {
-    "text": "Dan di atas semua itu, kenakanlah kasih, sebagai pengikat yang mempersatukan dan menyempurnakan.",
-    "source": "— Kolose 3:14"
+    "text": "Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia.",
+    "source": "— Matius 19:6"
   },
   "music": {
-    "enabled": false,
-    "url": ""
+    "enabled": true,
+    "url": "/Music.mp3"
   },
   "rsvp_enabled": {
     "value": true
