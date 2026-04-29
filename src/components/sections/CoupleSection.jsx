@@ -6,7 +6,7 @@ function PersonCard({ person, variant }) {
     <AnimatedSection variant={variant} className="text-center flex-1">
       <div className="relative inline-block mb-8">
         <img
-          src={person.photoUrl || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'}
+          src={person.photoUrl || ''}
           alt={person.fullName}
           className="w-52 h-52 md:w-64 md:h-64 object-cover rounded-full mx-auto"
           style={{ boxShadow: '0 0 0 4px #F2EDE3, 0 0 0 6px rgba(201,168,76,0.3)' }}
