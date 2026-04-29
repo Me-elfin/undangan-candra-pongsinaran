@@ -25,15 +25,17 @@ export function useRealtimeComments() {
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'comments' },
         (payload) => {
-          if (payload.new.is_visible !== false) {
+          if (payload.new && payload.new.is_visible !== false) {
             setComments((prev) => [payload.new, ...prev])
           }
         }
       )
-      .subscribe()
+      .subscribe((status, err) => {
+        if (err) console.warn('Realtime subscription error:', err)
+      })
 
     return () => {
-      supabase.removeChannel(channel)
+      channel.unsubscribe()
     }
   }, [])
 
