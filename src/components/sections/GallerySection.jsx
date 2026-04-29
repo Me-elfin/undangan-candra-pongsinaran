@@ -6,12 +6,15 @@ import PhotoLightbox from '../ui/PhotoLightbox'
 import { supabase } from '../../lib/supabase'
 
 const FALLBACK_PHOTOS = [
-  { id: 1, image_url: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80', caption: '' },
-  { id: 2, image_url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80', caption: '' },
-  { id: 3, image_url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80', caption: '' },
-  { id: 4, image_url: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=600&q=80', caption: '' },
-  { id: 5, image_url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80', caption: '' },
-  { id: 6, image_url: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80', caption: '' },
+  { id: 1, image_url: '/gallery-DSC_4304.jpg', caption: '' },
+  { id: 2, image_url: '/gallery-DSC_4397.jpg', caption: '' },
+  { id: 3, image_url: '/gallery-DSC_4402.jpg', caption: '' },
+  { id: 4, image_url: '/gallery-DSC_4465.jpg', caption: '' },
+  { id: 5, image_url: '/gallery-DSC_4487.jpg', caption: '' },
+  { id: 6, image_url: '/gallery-DSC_4541.jpg', caption: '' },
+  { id: 7, image_url: '/gallery-DSC_4554.jpg', caption: '' },
+  { id: 8, image_url: '/gallery-DSC_4595.jpg', caption: '' },
+  { id: 9, image_url: '/gallery-DSC_4605.jpg', caption: '' },
 ]
 
 const containerVariants = {
