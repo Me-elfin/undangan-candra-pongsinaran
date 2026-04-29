@@ -8,6 +8,8 @@ Format mengikuti [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.4.0] — 2026-04-30
 
 ### Changed
+- **CoupleSection** — mengganti teks pengantar orang tua menjadi "Putra dari" (untuk pengantin pria) dan "Putri dari" (untuk pengantin wanita) melalui penambahan prop `childLabel` pada `PersonCard`.
+- **EventSection** — mengubah zona waktu dari WIB menjadi WITA pada informasi waktu Pemberkatan dan Resepsi.
 - **Animasi Global** — memperlambat durasi animasi *fade/slide* dari 0.7s menjadi 1.3s agar transisi halaman lebih halus dan elegan.
 - **Transisi Scroll** — mengganti *native scroll* pada tombol "Buka Undangan" di `HeroSection` menjadi animasi *custom ease-in-out* berdurasi 1.5 detik.
 - **CoupleSection** — memperbesar teks nama lengkap pengantin pria dan wanita sebesar 2pt (`text-[16.6px]`).

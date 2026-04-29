@@ -21,7 +21,7 @@ function EventCard({ title, event, delay }) {
         <h3 className="font-display text-3xl font-light text-charcoal mb-1">{title}</h3>
         <GoldDivider className="w-32" />
         <p className="font-body text-sm text-muted leading-loose">{formattedDate}</p>
-        <p className="font-display text-2xl text-gold font-light mt-1">{event.time} WIB</p>
+        <p className="font-display text-2xl text-gold font-light mt-1">{event.time} WITA</p>
         <p className="font-body text-sm font-medium text-charcoal mt-5">{event.venue}</p>
         <p className="font-body text-xs text-muted mt-1 leading-relaxed max-w-xs">{event.address}</p>
         {event.mapsUrl && (

@@ -1,7 +1,7 @@
 import AnimatedSection from '../ui/AnimatedSection'
 import GoldDivider from '../ui/GoldDivider'
 
-function PersonCard({ person, variant }) {
+function PersonCard({ person, variant, childLabel = "Putra/Putri dari" }) {
   return (
     <AnimatedSection variant={variant} className="text-center flex-1">
       <div className="relative inline-block mb-8">
@@ -17,7 +17,7 @@ function PersonCard({ person, variant }) {
       </h3>
       <p className="font-body text-[16.6px] text-white/50 mt-1 tracking-wide">{person.fullName}</p>
       <GoldDivider className="max-w-[180px] mx-auto" />
-      <p className="font-body text-sm text-white/40">Putra/Putri dari</p>
+      <p className="font-body text-sm text-white/40">{childLabel}</p>
       <p className="font-body text-sm text-white/70 mt-1 leading-relaxed">
         {person.fatherName}
         <br />
@@ -43,13 +43,13 @@ export default function CoupleSection({ config }) {
         </AnimatedSection>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-16">
-          <PersonCard person={groom} variant="slide-left" />
+          <PersonCard person={groom} variant="slide-left" childLabel="Putra dari" />
 
           <div className="flex-shrink-0 text-center hidden md:block">
             <span className="font-display text-7xl text-gold/30 font-light leading-none">&</span>
           </div>
 
-          <PersonCard person={bride} variant="slide-right" />
+          <PersonCard person={bride} variant="slide-right" childLabel="Putri dari" />
         </div>
       </div>
     </section>
