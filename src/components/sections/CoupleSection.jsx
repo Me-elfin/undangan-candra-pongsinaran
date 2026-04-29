@@ -9,19 +9,19 @@ function PersonCard({ person, variant }) {
           src={person.photoUrl || ''}
           alt={person.fullName}
           className="w-52 h-52 md:w-64 md:h-64 object-cover rounded-full mx-auto"
-          style={{ boxShadow: '0 0 0 4px #F2EDE3, 0 0 0 6px rgba(201,168,76,0.3)' }}
+          style={{ boxShadow: '0 0 0 4px rgba(44,44,44,0.8), 0 0 0 8px rgba(201,168,76,0.35)' }}
         />
       </div>
-      <h3 className="font-display text-4xl md:text-5xl font-light text-charcoal">
+      <h3 className="font-display text-4xl md:text-5xl font-light text-white">
         {person.nickname || person.fullName}
       </h3>
-      <p className="font-body text-sm text-muted mt-1 tracking-wide">{person.fullName}</p>
+      <p className="font-body text-[16.6px] text-white/50 mt-1 tracking-wide">{person.fullName}</p>
       <GoldDivider className="max-w-[180px] mx-auto" />
-      <p className="font-body text-sm text-muted">Putra/Putri dari</p>
-      <p className="font-body text-sm text-charcoal mt-1 leading-relaxed">
+      <p className="font-body text-sm text-white/40">Putra/Putri dari</p>
+      <p className="font-body text-sm text-white/70 mt-1 leading-relaxed">
         {person.fatherName}
         <br />
-        <span className="text-muted text-xs">&</span>
+        <span className="text-white/30 text-xs">&</span>
         <br />
         {person.motherName}
       </p>
@@ -34,11 +34,11 @@ export default function CoupleSection({ config }) {
   const bride = config?.couple?.bride || {}
 
   return (
-    <section className="py-24 px-6 bg-ivory">
+    <section className="relative z-20 -mt-[100svh] md:mt-0 py-24 px-6 bg-charcoal">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection className="text-center mb-16">
-          <p className="section-subtitle mb-4">Mempelai</p>
-          <h2 className="section-title">Kedua Insan</h2>
+          <p className="font-body text-xs tracking-[0.3em] uppercase text-gold/60 mb-4">Mempelai</p>
+          <h2 className="font-display text-5xl md:text-6xl font-light text-white">Kedua Insan</h2>
           <GoldDivider className="max-w-xs mx-auto" />
         </AnimatedSection>
 
@@ -46,7 +46,7 @@ export default function CoupleSection({ config }) {
           <PersonCard person={groom} variant="slide-left" />
 
           <div className="flex-shrink-0 text-center hidden md:block">
-            <span className="font-display text-7xl text-gold/20 font-light leading-none">&</span>
+            <span className="font-display text-7xl text-gold/30 font-light leading-none">&</span>
           </div>
 
           <PersonCard person={bride} variant="slide-right" />
