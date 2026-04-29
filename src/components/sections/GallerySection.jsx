@@ -50,12 +50,53 @@ export default function GallerySection() {
           <GoldDivider className="max-w-xs mx-auto" />
         </AnimatedSection>
 
+        {/* Mobile Collage Layout */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-3"
+          className="grid md:hidden grid-cols-2 gap-2"
+        >
+          {[
+            { src: '/mobile-gallery/gambar 1.jpg', index: 0, className: 'col-span-2 aspect-[2/1]' },
+            { src: '/mobile-gallery/gambar 2.jpg', index: 1, className: 'col-span-1 row-span-2 h-full' },
+            { src: '/mobile-gallery/gambar 3.jpg', index: 2, className: 'col-span-1 aspect-square' },
+            { src: '/mobile-gallery/gambar 4.jpg', index: 3, className: 'col-span-1 aspect-square' },
+            { src: '/mobile-gallery/gambar 6.jpg', index: 5, className: 'col-span-1 aspect-square' },
+            { src: '/mobile-gallery/gambar 7.jpg', index: 6, className: 'col-span-1 aspect-square' },
+            { src: '/mobile-gallery/gambar 5.jpg', index: 4, className: 'col-span-2 aspect-[2/1]' },
+            { src: '/mobile-gallery/gambar 8.jpg', index: 7, className: 'col-span-1 aspect-square' },
+            { src: '/mobile-gallery/gambar 9.jpg', index: 8, className: 'col-span-1 aspect-square' },
+          ].map((item, i) => (
+            <motion.div
+              key={`mobile-${i}`}
+              variants={itemVariants}
+              className={`relative overflow-hidden cursor-pointer group ${item.className}`}
+              onClick={() => setLightboxIndex(item.index)}
+            >
+              <img
+                src={item.src}
+                alt={`Mobile Gallery ${i + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/25 transition-all duration-300 flex items-center justify-center">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/60 w-10 h-10 flex items-center justify-center text-white/80 text-xl">
+                  +
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Desktop Layout */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="hidden md:grid md:grid-cols-3 gap-3"
         >
           {photos.map((photo, index) => (
             <motion.div

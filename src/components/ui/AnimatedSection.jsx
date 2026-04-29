@@ -36,7 +36,7 @@ export default function AnimatedSection({
       initial={v.initial}
       whileInView={v.animate}
       viewport={{ once, margin: '-80px' }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.3, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

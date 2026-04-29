@@ -20,10 +20,39 @@ export default function InvitePage() {
   // Always use local music file as fallback — Supabase config can override with a different URL
   const musicUrl = (config?.music?.enabled && config?.music?.url) || '/Music.mp3'
 
+  // Custom ease-in-out scroll animation
+  function smoothScrollTo(element, duration) {
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset
+    const startPosition = window.pageYOffset
+    const distance = targetPosition - startPosition
+    let startTime = null
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime
+      const timeElapsed = currentTime - startTime
+      // Ease in out quartic
+      let t = timeElapsed / (duration / 2)
+      let run = 0
+      if (t < 1) {
+        run = (distance / 2) * t * t * t * t + startPosition
+      } else {
+        t -= 2
+        run = (-distance / 2) * (t * t * t * t - 2) + startPosition
+      }
+      
+      window.scrollTo(0, run)
+      if (timeElapsed < duration) requestAnimationFrame(animation)
+    }
+
+    requestAnimationFrame(animation)
+  }
+
   function handleOpen() {
     setOpened(true)
     setTimeout(() => {
-      contentRef.current?.scrollIntoView({ behavior: 'smooth' })
+      if (contentRef.current) {
+        smoothScrollTo(contentRef.current, 1500) // 1.5 detik
+      }
     }, 50)
   }
 
