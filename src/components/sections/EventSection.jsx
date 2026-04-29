@@ -62,7 +62,7 @@ export default function EventSection({ config }) {
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <EventCard title="Akad Nikah" event={akad} delay={0} />
+          <EventCard title="Pemberkatan" event={akad} delay={0} />
           <EventCard title="Resepsi" event={resepsi} delay={0.15} />
         </div>
       </div>
