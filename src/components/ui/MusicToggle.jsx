@@ -41,6 +41,20 @@ export default function MusicToggle({ musicUrl, autoPlay = false }) {
     }
   }, [volume])
 
+  // Pause saat tab tidak aktif, lanjut saat kembali
+  useEffect(() => {
+    function handleVisibilityChange() {
+      if (!audioRef.current) return
+      if (document.hidden) {
+        audioRef.current.pause()
+      } else if (isMusicPlaying) {
+        audioRef.current.play().catch(() => {})
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }, [isMusicPlaying])
+
   // Close slider when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {

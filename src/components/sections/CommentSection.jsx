@@ -5,10 +5,13 @@ import GoldDivider from '../ui/GoldDivider'
 import { useRealtimeComments } from '../../hooks/useRealtimeComments'
 import { supabase } from '../../lib/supabase'
 
+const PAGE_SIZE = 5
+
 export default function CommentSection() {
   const { comments, loading } = useRealtimeComments()
   const [form, setForm] = useState({ nama: '', pesan: '' })
   const [status, setStatus] = useState(null)
+  const [visible, setVisible] = useState(PAGE_SIZE)
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -81,12 +84,12 @@ export default function CommentSection() {
               Jadilah yang pertama memberikan ucapan ♡
             </p>
           )}
-          {comments.map((comment, index) => (
+          {comments.slice(0, visible).map((comment, index) => (
             <motion.div
               key={comment.id}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index < 5 ? index * 0.07 : 0 }}
+              transition={{ duration: 0.5, delay: index < PAGE_SIZE ? index * 0.07 : 0 }}
               className="card-ivory"
             >
               <div className="flex items-start gap-4">
@@ -111,6 +114,18 @@ export default function CommentSection() {
               </div>
             </motion.div>
           ))}
+
+          {/* Load More */}
+          {!loading && visible < comments.length && (
+            <div className="text-center pt-4">
+              <button
+                onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                className="font-body text-xs tracking-[0.25em] uppercase text-gold hover:text-gold/70 transition-colors border border-gold/30 hover:border-gold/60 px-6 py-3"
+              >
+                Lihat Lagi
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

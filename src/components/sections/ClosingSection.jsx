@@ -24,8 +24,11 @@ export default function ClosingSection({ config }) {
   })
 
   return (
-    <footer className="py-24 px-6 bg-charcoal text-center">
-      <div className="max-w-2xl mx-auto">
+    <footer className="px-6 bg-charcoal text-center flex flex-col items-center justify-center relative"
+      style={{ minHeight: '100svh' }}>
+
+      {/* Konten utama — center */}
+      <div className="max-w-2xl mx-auto w-full py-24 -mt-16">
         <AnimatedSection>
           <div className="font-display text-7xl text-gold/20 leading-none mb-8 select-none">"</div>
 
@@ -50,20 +53,23 @@ export default function ClosingSection({ config }) {
           <p className="font-body text-xs text-white/30 mt-4 tracking-[0.25em] uppercase">
             {formattedDate}
           </p>
-
-          <div className="flex items-center justify-center gap-2 mt-16">
-            <a
-              href="https://www.instagram.com/lekomese/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 font-body text-xs text-white/20 hover:text-gold/50 transition-colors duration-300 tracking-wide"
-            >
-              <InstagramIcon size={14} />
-              <span>Dibuat oleh @lekomese_studio</span>
-            </a>
-          </div>
         </AnimatedSection>
+      </div>
+
+      {/* Credit — tempel di bawah */}
+      <div className="absolute bottom-6 left-0 right-0 flex items-center justify-center">
+        <a
+          href="https://www.instagram.com/lekomese/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 font-body text-gold/50 hover:text-gold transition-colors duration-300 tracking-wide"
+          style={{ fontSize: '13px' }}
+        >
+          <InstagramIcon size={15} />
+          <span>Dibuat oleh @lekomese_studio</span>
+        </a>
       </div>
     </footer>
   )
+
 }
