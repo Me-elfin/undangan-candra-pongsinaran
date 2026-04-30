@@ -129,6 +129,28 @@ function RsvpDashboard({ user }) {
     await supabase.auth.signOut()
   }
 
+  function handleExport() {
+    const headers = ['No', 'Nama', 'No. HP', 'Kehadiran', 'Jumlah Tamu', 'Tanggal']
+    const rows = data.map((row, i) => [
+      i + 1,
+      row.nama,
+      row.hp || '',
+      row.hadir ? 'Hadir' : 'Tidak Hadir',
+      row.jumlah_tamu ?? '',
+      new Date(row.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+    ])
+    const csv = [headers, ...rows]
+      .map((r) => r.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `RSVP_Candra_Listarina_${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   const hadir = data.filter((r) => r.hadir)
   const tidakHadir = data.filter((r) => !r.hadir)
   const totalTamu = hadir.reduce((sum, r) => sum + (r.jumlah_tamu || 0), 0)
@@ -152,12 +174,20 @@ function RsvpDashboard({ user }) {
             </h1>
             <p className="font-body text-xs text-white/40 mt-1">Daftar Tamu RSVP</p>
           </div>
-          <button
-            onClick={handleLogout}
-            className="font-body text-xs tracking-widest uppercase text-white/50 hover:text-gold transition-colors border border-white/20 hover:border-gold/40 px-4 py-2"
-          >
-            Keluar
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleExport}
+              className="font-body text-xs tracking-widest uppercase text-gold hover:text-gold/70 transition-colors border border-gold/40 hover:border-gold/70 px-4 py-2"
+            >
+              Export CSV
+            </button>
+            <button
+              onClick={handleLogout}
+              className="font-body text-xs tracking-widest uppercase text-white/50 hover:text-gold transition-colors border border-white/20 hover:border-gold/40 px-4 py-2"
+            >
+              Keluar
+            </button>
+          </div>
         </div>
       </div>
 
