@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import InvitePage from './pages/InvitePage'
+import RsvpPage from './pages/RsvpPage'
 import AdminLogin from './admin/AdminLogin'
 import AdminLayout from './admin/AdminLayout'
 import AdminDashboard from './admin/AdminDashboard'
@@ -15,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/invite" replace />} />
         <Route path="/invite" element={<InvitePage />} />
+        <Route path="/rsvp" element={<RsvpPage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"
